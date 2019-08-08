@@ -1,14 +1,15 @@
 const router = require('express').Router()
 
 const posts = require('../posts/postDb')
+const users = require('../users/userDb')
 
 
 // get posts by user
 
 router.get('/:id', (req, res) => {
-    const userId = req.params.userId
+    const userId = req.params.id
     
-    posts.getById(userId)
+    users.getUserPosts(userId)
         .then(post => {
             console.log('user post', post)
             res.status(200).json(post)
